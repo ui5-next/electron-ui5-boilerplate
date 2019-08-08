@@ -12,7 +12,7 @@
 	},
 	"scripts": {
 		"postinstall": "electron-builder install-app-deps && npm run ui:install",
-		"ui:install":"cd ui && npm install",
+		"ui:install": "cd ui && npm install",
 		"ui:build": "cd ui && npm run build",
 		"lint": "xo",
 		"test": "npm run lint",

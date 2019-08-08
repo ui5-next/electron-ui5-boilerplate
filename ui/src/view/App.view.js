@@ -36,7 +36,7 @@ export default class AppView extends JSView {
       this.onSideNavButtonPress();
     }
 
-    Device.media.attachHandler(function (oDevice) {
+    Device.media.attachHandler(function(oDevice) {
       if ((oDevice.name === "Tablet" && this._bExpanded) || oDevice.name === "Desktop") {
         this.onSideNavButtonPress();
         // set the _bExpanded to false on tablet devices
@@ -77,7 +77,7 @@ export default class AppView extends JSView {
       oMessagePopover.destroy();
     }
 
-    var fnHandleUserMenuItemPress = function (oEvent) {
+    var fnHandleUserMenuItemPress = function(oEvent) {
       MessageToast.show(oEvent.getSource().getText() + " was pressed");
     };
 
@@ -91,7 +91,7 @@ export default class AppView extends JSView {
         <Button text="Help" type={ButtonType.Transparent} press={fnHandleUserMenuItemPress} />,
         <Button text="Logout" type={ButtonType.Transparent} press={fnHandleUserMenuItemPress} />
       ],
-      afterClose: function () {
+      afterClose: function() {
         oActionSheet.destroy();
       }
     });
@@ -113,7 +113,7 @@ export default class AppView extends JSView {
     var oBindingObject = oBindingContext.getObject();
     var oLink = new Link("moreDetailsLink", {
       text: "More Details",
-      press: function () {
+      press: function() {
         MessageToast.show("More Details was pressed");
       }
     });
@@ -138,7 +138,7 @@ export default class AppView extends JSView {
           path: 'alerts>/alerts/errors',
           factory: this._createError.bind(this)
         },
-        afterClose: function () {
+        afterClose: function() {
           oMessagePopover.destroy();
         }
       });
@@ -179,7 +179,7 @@ export default class AppView extends JSView {
     }
     var oButton = new Button({
       text: oBundle.getText("notificationButtonText"),
-      press: function () {
+      press: function() {
         MessageToast.show("Show all Notifications was pressed");
       }
     });
@@ -192,7 +192,7 @@ export default class AppView extends JSView {
         path: 'alerts>/alerts/notifications',
         factory: this._createNotification
       },
-      afterClose: function () {
+      afterClose: function() {
         oNotificationPopover.destroy();
       }
     });
@@ -215,7 +215,7 @@ export default class AppView extends JSView {
       title: oBindingObject.title,
       description: oBindingObject.description,
       priority: oBindingObject.priority,
-      close: function (oEvent) {
+      close: function(oEvent) {
         var sBindingPath = oEvent.getSource().getCustomData()[0].getValue();
         var sIndex = sBindingPath.split("/").pop();
         var aItems = oEvent.getSource().getModel("alerts").getProperty("/alerts/notifications");
@@ -226,7 +226,7 @@ export default class AppView extends JSView {
       },
       datetime: oBindingObject.date,
       authorPicture: oBindingObject.icon,
-      press: function () {
+      press: function() {
         var oBundle = this.getModel("i18n").getResourceBundle();
         MessageToast.show(oBundle.getText("notificationItemClickedMessage", oBindingObject.title));
       },
